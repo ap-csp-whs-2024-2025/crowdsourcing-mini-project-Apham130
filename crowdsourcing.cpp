@@ -35,20 +35,32 @@ int averageDuration(std::vector<int> secondss)
 std::string longestSong(std::vector<std::string> titles, std::vector<std::string> artists, std::vector<int> secondss)
 {
     int x = secondss[0];
+    int sindex;
     for (index = 1; index = length(secondss); index = index + 1)
     {
        if (secondss[index] > x)
        {
-        
+            x = secondss[index];
+            sindex = index;
        }
     }
-    return ("The longest song is ");
+
+    return ("The longest song is " (titles[sindex]) " by " (artists[sindex]) " at " (x) " seconds long.");
 }
 
 std::string shortestSong(std::vector<std::string> titles, std::vector<std::string> artists, std::vector<int> secondss)
 {
-    
-    return ("The shortest song is ");
+    int x = secondss[0];
+    int sindex;
+    for (index = 1; index = length(secondss); index = index + 1)
+    {
+       if (secondss[index] < x)
+       {
+            x = secondss[index];
+            sindex = index;
+       }
+    }
+    return ("The shortest song is " (titles[sindex]) " by " (artists[sindex]) " at " (x) " seconds long.");
 }
 
 int main()

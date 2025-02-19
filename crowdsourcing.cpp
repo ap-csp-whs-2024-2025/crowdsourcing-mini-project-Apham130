@@ -14,17 +14,18 @@
 int totalDuration(std::vector<int> secondss)
 {
     int x = 0;
-    for (int index = 0; index == length(secondss); index = index + 1)
+    for (int index = 0; index < length(secondss); index = index + 1)
     {
         x = secondss[index] + x;
     }
+    std::cout << x << std::endl;
     return x;
 }
 
-int averageDuration(std::vector<int> secondss)
+double averageDuration(std::vector<int> secondss)
 {
-    int x = 0;
-    for (int index = 0; index == length(secondss); index = index + 1)
+    double x = 0;
+    for (int index = 0; index < length(secondss); index = index + 1)
     {
         x = secondss[index] + x;
     }
@@ -34,50 +35,90 @@ int averageDuration(std::vector<int> secondss)
 
 std::string longestSong(std::vector<std::string> titles, std::vector<std::string> artists, std::vector<int> secondss)
 {
-    int x = secondss[0];
-    int sindex;
-    for (int index = 1; index == length(secondss); index = index + 1)
+    if (length(titles) > 2) 
     {
-       if (secondss[index] > x)
-       {
-            x = secondss[index];
-            sindex = index;
-       }
+        int x = secondss[0];
+        int sindex;
+        std::string returnThing;
+        for (int index = 1; index < length(secondss); index = index + 1)
+        {
+           if (secondss[index] > x)
+           {
+                x = secondss[index];
+                sindex = index;
+           }
+        }
+        returnThing = "The longest song is " + titles[sindex] + " by " + artists[sindex] + " at " + std::to_string(x) + " seconds long.";
+        return (returnThing);
+    } else if (length(titles) == 2)
+    {
+        if (secondss[0] > secondss[1])
+        {
+            std::string returnThing;
+            returnThing = "The longest song is " + titles[0] + " by " + artists[0] + " at " + std::to_string(0) + " seconds long.";
+            return returnThing;
+        } else 
+        {
+            std::string returnThing;
+            returnThing = "The longest song is " + titles[1] + " by " + artists[1] + " at " + std::to_string(1) + " seconds long.";
+            return returnThing;
+        }
+    } else 
+    {
+        return ("You only have 1 one song, it is both your longest and shortest song.");
     }
-
-    return ("The longest song is " (titles[sindex]) " by " (artists[sindex]) " at " (x) " seconds long.");
+    return "404";
 }
 
 std::string shortestSong(std::vector<std::string> titles, std::vector<std::string> artists, std::vector<int> secondss)
 {
-    int x = secondss[0];
-    int sindex;
-    for (int index = 1; index == length(secondss); index = index + 1)
+    if (length(titles) > 2) 
     {
-       if (secondss[index] < x)
-       {
-            x = secondss[index];
-            sindex = index;
-       }
-    }
-    return ("The shortest song is " (titles[sindex]) " by " (artists[sindex]) " at " (x) " seconds long.");
+        int x = secondss[0];
+        int sindex;
+        std::string returnThing;
+        for (int index = 1; index == length(secondss); index = index + 1)
+        {
+           if (secondss[index] < x)
+           {
+                x = secondss[index];
+                sindex = index;
+           }
+        }
+        returnThing = "The shortest song is " + titles[sindex] + " by " + artists[sindex] + " at " + std::to_string(x) + " seconds long.";
+        return (returnThing);
+    } else if (length(titles) == 2)
+    {
+        if (secondss[0] < secondss[1])
+        {
+            std::string returnThing;
+            returnThing = "The shortest song is " + titles[0] + " by " + artists[0] + " at " + std::to_string(0) + " seconds long.";
+            return returnThing;
+        } else 
+        {
+            std::string returnThing;
+            returnThing = "The longest song is " + titles[1] + " by " + artists[1] + " at " + std::to_string(1) + " seconds long.";
+            return returnThing;
+        }
+    } 
+    return "404";
 }
 
 int main()
 {
+    std::vector<std::string> titles = {};
+    std::vector<std::string> artists = {};
+    std::vector<int> secondss = {};
     int endCondition = true;
     while (endCondition)
     {   
         std::string title, artist;
         int seconds;
-        std::vector<std::string> titles = {};
-        std::vector<std::string> artists = {};
-        std::vector<int> secondss = {};
-        
+
         std::cout << "Enter the song's title:\n > ";
-        std::cin >> title;
+        std::getline(std::cin, title);
         std::cout << "Enter the song's main artist:\n > ";
-        std::cin >> artist;
+        std::getline(std::cin, artist);
         std::cout << "Enter the song's duration in seconds:\n > ";
         std::cin >> seconds;
         append(titles, title);
@@ -91,8 +132,21 @@ int main()
         {
             endCondition = false;
         }
+        std::cin.ignore();
+        display(artists);
+        display(titles);
+        display(secondss);
     }
-
+    display(artists);
+    display(titles);
+    display(secondss);
+    
+    
+    
+    std::cout << "The total duration of all the songs is " << totalDuration(secondss) << "." << std::endl;
+    std::cout << "The average length of a song is " << averageDuration(secondss) << "." << std::endl;
+    std::cout << longestSong(titles, artists, secondss) << std::endl;
+    std::cout << shortestSong(titles, artists, secondss) << std::endl;
 
 
 

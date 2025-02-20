@@ -18,7 +18,6 @@ int totalDuration(std::vector<int> secondss)
     {
         x = secondss[index] + x;
     }
-    std::cout << x << std::endl;
     return x;
 }
 
@@ -55,12 +54,12 @@ std::string longestSong(std::vector<std::string> titles, std::vector<std::string
         if (secondss[0] > secondss[1])
         {
             std::string returnThing;
-            returnThing = "The longest song is " + titles[0] + " by " + artists[0] + " at " + std::to_string(0) + " seconds long.";
+            returnThing = "The longest song is " + titles[0] + " by " + artists[0] + " at " + std::to_string(secondss[0]) + " seconds long.";
             return returnThing;
         } else 
         {
             std::string returnThing;
-            returnThing = "The longest song is " + titles[1] + " by " + artists[1] + " at " + std::to_string(1) + " seconds long.";
+            returnThing = "The longest song is " + titles[1] + " by " + artists[1] + " at " + std::to_string(secondss[1]) + " seconds long.";
             return returnThing;
         }
     } else 
@@ -77,7 +76,7 @@ std::string shortestSong(std::vector<std::string> titles, std::vector<std::strin
         int x = secondss[0];
         int sindex;
         std::string returnThing;
-        for (int index = 1; index == length(secondss); index = index + 1)
+        for (int index = 1; index < length(secondss); index = index + 1)
         {
            if (secondss[index] < x)
            {
@@ -92,12 +91,12 @@ std::string shortestSong(std::vector<std::string> titles, std::vector<std::strin
         if (secondss[0] < secondss[1])
         {
             std::string returnThing;
-            returnThing = "The shortest song is " + titles[0] + " by " + artists[0] + " at " + std::to_string(0) + " seconds long.";
+            returnThing = "The shortest song is " + titles[0] + " by " + artists[0] + " at " + std::to_string(secondss[0]) + " seconds long.";
             return returnThing;
         } else 
         {
             std::string returnThing;
-            returnThing = "The longest song is " + titles[1] + " by " + artists[1] + " at " + std::to_string(1) + " seconds long.";
+            returnThing = "The longest song is " + titles[1] + " by " + artists[1] + " at " + std::to_string(secondss[1]) + " seconds long.";
             return returnThing;
         }
     } 
@@ -143,8 +142,8 @@ int main()
     
     
     
-    std::cout << "The total duration of all the songs is " << totalDuration(secondss) << "." << std::endl;
-    std::cout << "The average length of a song is " << averageDuration(secondss) << "." << std::endl;
+    std::cout << "The total duration of all the songs is " << totalDuration(secondss) <<  " seconds." << std::endl;
+    std::cout << "The average length of a song is " << averageDuration(secondss) << " seconds." << std::endl;
     std::cout << longestSong(titles, artists, secondss) << std::endl;
     std::cout << shortestSong(titles, artists, secondss) << std::endl;
 

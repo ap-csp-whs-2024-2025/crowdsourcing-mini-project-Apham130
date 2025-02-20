@@ -105,41 +105,71 @@ std::string shortestSong(std::vector<std::string> titles, std::vector<std::strin
 
 int main()
 {
+    bool endProgram = false;
     std::vector<std::string> titles = {};
     std::vector<std::string> artists = {};
     std::vector<int> secondss = {};
-    int endCondition = true;
-    while (endCondition)
-    {   
-        std::string title, artist;
-        int seconds;
-
-        std::cout << "Enter the song's title:\n > ";
-        std::getline(std::cin, title);
-        std::cout << "Enter the song's main artist:\n > ";
-        std::getline(std::cin, artist);
-        std::cout << "Enter the song's duration in seconds:\n > ";
-        std::cin >> seconds;
-        append(titles, title);
-        append(artists, artist);
-        append(secondss, seconds);
-
-        std::string yn = "y"; 
-        std::cout << "Do you want to enter another song? (y/n)\n > ";
-        std::cin >> yn;
-        if (yn == "n")
-        {
-            endCondition = false;
-        }
+    std::string title;
+    std::string artist;
+    int seconds;
+    std::cout << "Welcome to the song crowdsourcing experiment!";
+    while (!(endProgram))
+    {
+        int input = 0;
+        
+        std::cout << "\nWhat would you like to do?\n\n"
+                  << "1. Enter a song\n"
+                  << "2. Search for a song\n"
+                  << "3. Remove a song\n"
+                  << "4. Display all songs\n"
+                  << "5. End Program\n\n > ";
+        std::cin >> input; 
         std::cin.ignore();
-        display(artists);
-        display(titles);
-        display(secondss);
+
+        if (input == 1)
+        {
+            while (input == 1)
+            {   
+                std::cout << "Enter the song's title:\n > ";
+                std::getline(std::cin, title);
+                std::cout << "Enter the song's main artist:\n > ";
+                std::getline(std::cin, artist);
+                std::cout << "Enter the song's duration in seconds:\n > ";
+                std::cin >> seconds;
+                append(titles, title);
+                append(artists, artist);
+                append(secondss, seconds);
+
+                std::string yn = "y"; 
+                std::cout << "Do you want to enter another song? (y/n)\n > ";
+                std::cin >> yn;
+                if (yn == "n")
+                {
+                    input = 0;
+                }
+                std::cin.ignore();
+            }
+        } else if (input == 2) // search
+        {
+            endProgram = true; // placeholder
+        } else if (input == 3) //remove
+        {
+            int indexRemove;
+            display(titles);
+            std::cin >> indexRemove;
+            indexRemove = indexRemove + 1;
+            input = 0;
+            
+        } else if (input == 4) //display
+        {
+            display(titles);
+            input = 0; 
+        } else if (input == 5) //end
+        {
+            endProgram = true;
+        }
+ 
     }
-    display(artists);
-    display(titles);
-    display(secondss);
-    
     
     
     std::cout << "The total duration of all the songs is " << totalDuration(secondss) <<  " seconds." << std::endl;
